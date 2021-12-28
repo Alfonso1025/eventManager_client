@@ -1,28 +1,37 @@
 import  React, {useState} from "react"
 
-import {useHistory} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 function Registration(props){
-    let history=useHistory()
+
+    const navigate = useNavigate();
+    
     const [weddingName, setWeddingName]=useState('');
     const [groom, setGroom]=useState('');
     const [bride, setBride]=useState('');
     const [location, setLocation]=useState('');
     const[date, setDate]= useState('');
 
-    const handleSubmit= (e)=>{
+    const handleSubmit= async(e)=>{
+    e.preventDefault()
+    const body={weddingName,groom,bride,location,date}
+    console.log(body)
 
-        e.preventDefault()
-       props.setEventInfo({
-           weddingName:weddingName,
-           groom:groom,
-           bride:bride,
-           location:location,
-           date:date
+    /* try {
+        const response= await fetch('http://localhost:3001/event/create',{
+            method:"POST",
+            headers:{token:localStorage.token},
+            body:JSON.stringify(body)
+        })
 
-       })
-       history.push('/EventManager')
+       
+        console.log(response) */
 
+        
+    /* }
+     catch (error) {
+        console.log(error)
+    } */
     }
     
 
