@@ -1,34 +1,53 @@
-import React, {useState} from "react"
-import Guesslist from "./Guesslist"
+import React, {useState, useEffect} from "react"
+import Event from './Event'
 
 function EventManager(props){
 
-    
-    //recibe guesslist and setGuesslist
-    const listOfGuesst= props.listOfGuesst;
-    const setListOfGuesst=props.setListOfGuesst;
+    //recibe props
     const count= props.count
+    //manage state for event
+    const [eventArray, setEventArray]=useState([])
     
-    //open component guesslist
-    const[isGuesslistOpen, setisGueslistOpen]=useState(false)
-    function handleOpenGuessList(e){
-        e.preventDefault();
-        setisGueslistOpen(!isGuesslistOpen)
-
+    
+    
+    //get events from db
+    const getEvent=async()=>{
+        try {
+            const response= await fetch('http://localhost:3001/event/list',{
+                method:'GET',
+                headers:{token:localStorage.token}
+            })
+            const parseResponse= await response.json()
+            
+            setEventArray(parseResponse.data)
+        }
+         catch (error) {
+            console.log(error)
+        }
     }
+    console.log(eventArray)
+    //the events are display once, when the page loads
+    useEffect(()=>{
+        getEvent()
+    },[])
+
     return(
 
 
         <div>
+            { eventArray.map(element=>
+                ( 
+                <Event wedding={element.wedding_name}
+                 groom={element.groom_name} 
+                 bride={element.bride_name} 
+                 location={element.wedding_location}
+                  date={element.wedding_date}
+                  eventId={element.wedding_id} 
+                  count={count} />
+                )
+            )} 
+        
             
-
-            <h1>{props.eventInfo.weddingName}!</h1><h3>Congratulations</h3> <p>{props.eventInfo.bride} and {props.eventInfo.groom}</p>
-            <h4>Location: {props.eventInfo.location}</h4>
-            <h4>Date{props.eventInfo.date}</h4>
-            <h5>{count} people are attending your event</h5>
-            
-            <button onClick={handleOpenGuessList}>Manage your guesslist</button>
-            {isGuesslistOpen && <Guesslist listOfGuesst={listOfGuesst} setListOfGuesst={setListOfGuesst} eventInfo={props.eventInfo}/> }
         
         </div>
         

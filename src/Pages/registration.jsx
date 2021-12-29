@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom"
 
 function Registration(props){
 
-    const navigate = useNavigate();
+    
     
     const [weddingName, setWeddingName]=useState('');
     const [groom, setGroom]=useState('');
@@ -17,21 +17,21 @@ function Registration(props){
     const body={weddingName,groom,bride,location,date}
     console.log(body)
 
-    /* try {
+     try {
         const response= await fetch('http://localhost:3001/event/create',{
             method:"POST",
-            headers:{token:localStorage.token},
+            headers:{
+                token:localStorage.token,
+                "Content-Type":"application/json"
+            },
             body:JSON.stringify(body)
         })
 
-       
-        console.log(response) */
-
-        
-    /* }
+        window.location.href='EventManager';   
+     }
      catch (error) {
         console.log(error)
-    } */
+    }
     }
     
 

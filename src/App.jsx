@@ -43,7 +43,7 @@ const [listOfGuesst, setListOfGuesst]= useState([initialValue]);
 //manage state for registration form
 const defaultValue={weddingName:'juan and juana', groom:'juan', bride:'juana', location:'naucalpan', date:'01/09/23'}
 const [eventInfo, setEventInfo]=useState(defaultValue);
-
+//manage state for count of guests attending
 const [count, setCount]=useState(0);
 
 
