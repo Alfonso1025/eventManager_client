@@ -13,17 +13,26 @@ const listOfGuesst=props.listOfGuesst;
 
 
 //Guesst Authentication
-const [isAuthenticated, setIsAuthenticated] =useState(false)
+const [isGuestVerified, setIsGuestVerified] =useState(false)
 
 //State that manages the guest-object that has been authenticated
-const [guesstAuthenticated, setGuestAuthenticated]=useState({})
+const [guest, setGuest]=useState({})
 
 
 return(
      
         
 <div>
-  {!isAuthenticated ? <LoginGuest setGuestAuthenticated={setGuestAuthenticated} setIsAuthenticated={setIsAuthenticated} listOfGuesst={listOfGuesst}/>: <ManageCheckIn listOfGuesst={listOfGuesst} count={count} setCount={setCount} guesstAuthenticated={guesstAuthenticated}/>}
+  
+  
+    {!isGuestVerified
+    ?
+      <LoginGuest setGuest={setGuest} setIsGuestVerified={setIsGuestVerified} listOfGuesst={listOfGuesst}/>
+    : 
+      <ManageCheckIn listOfGuesst={listOfGuesst} count={count} setCount={setCount} guest={guest}/>
+    
+    }
+
 </div>
 
         

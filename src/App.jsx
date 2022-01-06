@@ -68,7 +68,7 @@ const [count, setCount]=useState(0);
       
       <Route path="/login" exact  element={
         <>
-        { !isAuthenticated ? <Login setAuth={setAuth}/> : <Home/>   }
+        { !isAuthenticated ? <Login setAuth={setAuth}/> : <Home setAuth={setAuth}/>   }
      
         </>
       }>
@@ -106,7 +106,7 @@ const [count, setCount]=useState(0);
 
       </Route>
       <Route path="/registration" exact element ={<Registration setEventInfo={setEventInfo}/>}></Route>
-      <Route path="/checkin" element={<CheckIn  listOfGuesst={listOfGuesst} count={count} setCount={setCount}/>}> </Route>
+      <Route path="/checkin" exact element={<CheckIn count={count} setCount={setCount}/>}></Route>
       <Route path="*" exact element={Notfound}></Route>
     </Routes>
   </Router>

@@ -1,38 +1,22 @@
 import React, {useState} from 'react';
 const ManageCheckIn= (props)=>{
 
-    //recibe props
-    const listOfGuesst= props.listOfGuesst
-    const setCount= props.setCount
-    const guesstAuthenticated=props.guesstAuthenticated
-    const count = props.count;
 
-    //State manages if the guesst is attending
-    const [isAttending, setIsAttending]=useState(false)
+//recibe props
+     const listOfGuesst= props.listOfGuesst
+     const setCount= props.setCount
+     const count = props.count;
+     const guest=props.guest
 
-    //count guessts with isAttending as true onclick
-const handleCount= ()=>{
-    
-    let counter=0
-    for(let i=0; i<listOfGuesst.length; i++){
-        if(listOfGuesst[i].isAttending===true) {
-            counter=counter+1
-            setCount(counter)
-            setIsAttending(true)
-        }
-    }
 
-}
+//query to update the guest by id
 
-const handleOnChange= ()=>{
-    guesstAuthenticated.isAttending=!guesstAuthenticated.isAttending
-    console.log('guest has checked the box')
-}
 
-console.log(guesstAuthenticated)
+ 
+
     return(
-        
-        <div>
+    // Create a form that will update isAttending on submit. 
+         {/* <div>
         <label>I am attending</label>
         <input onChange={handleOnChange} type="checkbox" />
         <button onClick={handleCount}>Send</button>
@@ -45,7 +29,7 @@ console.log(guesstAuthenticated)
         </div>
         
         
-        </div>
+        </div>  */}
         )
  
 }

@@ -3,22 +3,25 @@ import useCreateCode from '../CustomHooks/useCreateCode';
 
 
 const Guesslist=(props)=>{
+
+//manage input state
    const [guestName, setGuestName]=useState('');
    const [guestLastName, setGuestLastName]=useState('');
    const [guestEmail, setGuesstEmail]= useState('')
+
+//manage state of array of guests
+const[arrayGuest,setArrayGuest]=useState([])
+
    
    
-   //recibe guesslist and setGuesslist
+//recibe props
    const listOfGuesst=props.listOfGuesst;
    const setListOfGuesst=props.setListOfGuesst
-
-   
-
-   //recibe eventInfo props
-   const groom=props.eventInfo.groom
-   const bride=props.eventInfo.bride
+   const groom=props.groom
+   const bride=props.bride
+   const eventId=props.eventId
   
-
+console.log(listOfGuesst)
    const code=useCreateCode(groom, bride)
    
   //Post 
@@ -26,7 +29,7 @@ const addGuest= async (ev)=>{
   ev.preventDefault()
   const guesst={
     guestName:guestName,
-    guestLastname:guestLastName, 
+    guestLastName:guestLastName, 
     guestEmail:guestEmail,
     code:code,
     isAttending:false
@@ -34,7 +37,7 @@ const addGuest= async (ev)=>{
 
   try {
 
-    const response= await fetch('http://localhost:5000/createguest',{
+    const response= await fetch(`http://localhost:3001/guestlist/${eventId}`,{
             method:'POST',
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(guesst)
@@ -49,24 +52,66 @@ const addGuest= async (ev)=>{
     console.log(error)
   }
     }
+
 //get
 const getGuests= async ()=>{
   try{
-      const response = await fetch("http://localhost:5000/guests")
+      const response = await fetch(`http://localhost:3001/guestlist/${eventId}`)
       const jsonData= await response.json()
-      console.log(jsonData)
-      setListOfGuesst(jsonData);
       
-  }catch(e){
+      setArrayGuest(jsonData.data);
+      console.log('this is the guestlist from get',jsonData.data)
+      
+      
+  }
+  catch(e){
       console.log(e)
   }
 }
-useEffect(()=>{
+ useEffect(()=>{
   getGuests()
-},[])
+},[]) 
+
+//update guest
+
+//manage state from update form
+const[updatedGuestName,setUpdatedGuestName]=useState(guestName)
+const[updatedGuestLastName,setUpdatedGuestLastName]=useState(guestLastName)
+const[updatedGuestEmail,setUpdatedGuestEmail]=useState(guestEmail)
+//manage open update form
+const[isUpdateOpen, setIsUpdateOpen]=useState(false)
+const openUpdate=()=>{
+  setIsUpdateOpen(!isUpdateOpen)
+}
+
+
+const updateGuest=async(e,guestId)=>{
+  
+  e.preventDefault()
+  try {
+    const body={updatedGuestName,setUpdatedGuestLastName,setUpdatedGuestEmail}
+    const response=await fetch(`http://localhost:3001/guestlist/${guestId}`,{
+      method:"PUT",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(body)
+    })
+    //window.location.href='home';  
+  } 
+  catch (error) {
+    console.log(error)
+  } 
+}
 //delete
-const deleteGuesst= (guesstId)=>{
-    setListOfGuesst(listOfGuesst.filter(element=>element.id!==guesstId))
+const deleteGuesst= async(guestId)=>{
+   try {
+     const deletedGuest=await fetch(`http://localhost:3001/guestlist/${guestId}`,{
+       method:'DELETE'
+     })
+     window.location.href='home'; 
+   }
+    catch (error) {
+     
+   } 
 }
  
 
@@ -75,32 +120,49 @@ const deleteGuesst= (guesstId)=>{
   
     return(
     
-                    <div>
-                        <label htmlFor="">First Name</label>
+            <div>
+              <form onSubmit={addGuest}>
+              <label htmlFor="">First Name</label>
                           <input type="text" onChange={(e)=>setGuestName(e.target.value)} value={guestName} />
                         <label htmlFor="">Last Name</label>
                           <input type="text" onChange={(e)=>setGuestLastName(e.target.value)} value={guestLastName} />
                         <label htmlFor="">Email</label>
                           <input type="text" onChange={(e)=>setGuesstEmail(e.target.value)} value={guestEmail} />
                         
-                        <button onClick={addGuest}>
-                            add
-                        </button>
+                        <button>add</button>
 
-                         <ul>
-                            {listOfGuesst.map(element=>{
+
+             </form>
+             {arrayGuest.length!==0 &&
+                <ul>
+                {arrayGuest.map(element=>{
             
-                                 return   <li>
-                                            {element.guestname}
-                                            {element.code}
-                                            
+                  return   <li>
+                             {element.guest_name}
+                             {element.code}
+                              <button onClick={()=>deleteGuesst(element.guestlist_id)}>Eliminate</button>
+                              <button onClick={openUpdate}>Edit Guest</button>
 
-                                            <button onClick={()=>deleteGuesst(element.id)}>Eliminate</button>
-                                            
-                                          </li>
+                                   {isUpdateOpen &&
+
+                                    <form onSubmit={()=>updateGuest(element.guestlist_id)}>
+                                      <label>Name</label>
+                                      <input type="text"value={updatedGuestName} onChange={(e)=>setUpdatedGuestName(e.target.value)} />
+                                      <label>Last Name</label>
+                                      <input type="text"value={updatedGuestLastName} onChange={(e)=>setUpdatedGuestLastName(e.target.value)} />
+                                      <label>Email</label>
+                                      <input type="email"value={updatedGuestEmail} onChange={(e)=>setUpdatedGuestEmail(e.target.value)} />
+                                      <button>Edit</button>
+                                    </form>
+                                   }         
+                            </li>
                             })}
                             
-                        </ul>  
+                        </ul>
+             
+             }           
+
+             
                     </div>
 
     )

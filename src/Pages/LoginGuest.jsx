@@ -1,42 +1,50 @@
-import React, {useRef} from 'react'
+import React, {useState} from 'react'
+
+
 const LoginGuest= (props)=>{
-    //recibe props
-    const setIsAuthenticated= props.setIsAuthenticated;
-    const setGuestAuthenticated=props.setGuestAuthenticated;
+
+
+//recibe props
+    const setIsGuestVerified= props.setIsGuestVerified;
+    const setGuest=props.setGuest;
     const listOfGuesst=props.listOfGuesst;
    
-    //Point to the input value
-    const input= useRef('')
+//manage state for code
+    const[code, setCode]=useState('')
     
 
-    //login 
-    const handleAuthentication=(e)=>{
+    //login function
+    const handleAuthentication=async(e)=>{
         e.preventDefault()
-       
-        
-         for(let i=0; i<listOfGuesst.length; i++){
-            
-            
-            if(listOfGuesst[i].code===input.current.value){
-                
-                setGuestAuthenticated(listOfGuesst[i]);
-                setIsAuthenticated(true) 
-            }  
-        }  
-        
+        try {
 
+            const response= await fetch(`http://localhost:3001/checkin/${code}`,{
+                method:'GET'
+            })
+            const guest=await response.json()
+            setGuest(guest)
+            setIsGuestVerified(true)
+            
+        }
+         catch (error) {
+            console.log(error)
+             }
+       
         }
 
     
     return(
+
+    
     <div>
-        <label htmlFor="">Please enter your code</label>
-       
-          <input ref={input} type="text"/>
-          <button onClick={handleAuthentication} >Send</button>
         
-     
-     
+        <form>
+        <label htmlFor="">Please enter your code</label>
+          <input type="text" value={code} onChange={(e)=>{setCode(e.target.value)}}/>
+          <button onClick={handleAuthentication} >Send</button>
+        </form>
+         
+    
     </div>
     
     )
