@@ -1,4 +1,7 @@
 import React, {useState} from 'react'
+import '../styles/checkin.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import  {Button, Form}  from 'react-bootstrap';
 
 
 const LoginGuest= (props)=>{
@@ -22,6 +25,7 @@ const LoginGuest= (props)=>{
                 method:'GET'
             })
             const guest=await response.json()
+            if(guest.length===0) return false
             setGuest(guest)
             setIsGuestVerified(true)
             
@@ -35,18 +39,20 @@ const LoginGuest= (props)=>{
     
     return(
 
+    <>
+    <div className='header-login'><h1>RSVP</h1></div>
     
-    <div>
+    <div className='login-container'>
         
-        <form>
-        <label htmlFor="">Please enter your code</label>
-          <input type="text" value={code} onChange={(e)=>{setCode(e.target.value)}}/>
-          <button onClick={handleAuthentication} >Send</button>
-        </form>
+         <form className='form-login'>
+          <input className='input-login' placeholder='YOUR GUEST CODE' type="text" value={code} onChange={(e)=>{setCode(e.target.value)}}/>
+          <button className='button-login'  onClick={handleAuthentication} >FIND MY INVITATION</button>
+        </form> 
          
-    
+        
     </div>
-    
+
+    </>
     )
  
 }

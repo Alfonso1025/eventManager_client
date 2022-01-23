@@ -1,6 +1,6 @@
 import  React, {useState} from "react"
 
-import {useNavigate} from "react-router-dom"
+
 
 function Registration(props){
 
@@ -13,6 +13,7 @@ function Registration(props){
     const[date, setDate]= useState('');
 
     const handleSubmit= async(e)=>{
+
     e.preventDefault()
     const body={weddingName,groom,bride,location,date}
     console.log(body)

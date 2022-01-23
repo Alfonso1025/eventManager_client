@@ -1,0 +1,65 @@
+body{
+    box-sizing: border-box;
+    background-color: rgb(255,255,255);
+    padding: 0;
+}
+.header-login{
+    display: flex;
+    justify-content: center;
+    
+    align-items: center;
+    box-shadow:0 0 10px rgba(0, 0,0,0.5) ;
+    height: 80px;
+    width: 100%;
+}
+
+.login-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    background-image: url("./media/clebration.png");
+
+
+}
+.form-login{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    
+
+    
+}
+.input-login{
+    height: 4rem;
+    padding: 15px .625rem 0;
+    border: 1px solid #680202;
+    border-radius: 5px;
+
+}
+.button-login{
+    margin-top: 50px;
+    opacity: 0.7;
+    background-color: #680202;
+    height: 4rem;
+    color: rgb(255,255,255);
+    border-radius: 5px;
+}
+
+.header-manage-checkin{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 80px;
+    margin-bottom: 25px;
+}
+
+@media(max-width:500px){
+    .header-manage-checkin{
+        margin-top: 30px;
+    }
+}

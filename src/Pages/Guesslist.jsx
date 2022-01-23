@@ -15,13 +15,13 @@ const[arrayGuest,setArrayGuest]=useState([])
    
    
 //recibe props
-   const listOfGuesst=props.listOfGuesst;
+   const listOfGuest=props.listOfGuest;
    const setListOfGuesst=props.setListOfGuesst
    const groom=props.groom
    const bride=props.bride
    const eventId=props.eventId
   
-console.log(listOfGuesst)
+console.log(listOfGuest)
    const code=useCreateCode(groom, bride)
    
   //Post 
@@ -54,7 +54,7 @@ const addGuest= async (ev)=>{
     }
 
 //get
-const getGuests= async ()=>{
+/* const getGuests= async ()=>{
   try{
       const response = await fetch(`http://localhost:3001/guestlist/${eventId}`)
       const jsonData= await response.json()
@@ -70,7 +70,7 @@ const getGuests= async ()=>{
 }
  useEffect(()=>{
   getGuests()
-},[]) 
+},[])  */
 
 //update guest
 
@@ -133,11 +133,12 @@ const deleteGuesst= async(guestId)=>{
 
 
              </form>
-             {arrayGuest.length!==0 &&
-                <ul>
-                {arrayGuest.map(element=>{
+             {listOfGuest.length!==0 &&
+                <ul> 
+                {listOfGuest.map(element=>{
             
                   return   <li>
+                            {element.isattending===true && <p>Attending</p> }
                              {element.guest_name}
                              {element.code}
                               <button onClick={()=>deleteGuesst(element.guestlist_id)}>Eliminate</button>

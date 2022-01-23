@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React, {useState, useEffect} from 'react'
 import Guesslist from "./Guesslist"
 
 const Event= (props)=>{
@@ -8,8 +8,11 @@ const Event= (props)=>{
     const bride=props.bride
     const location=props.location
     const date=props.date
-    const count=props.count
     const eventId=props.eventId
+
+    //manage list of guest state. This array of guest is passed down to 
+    //guestlist component as props
+    const [listOfGuest, setListOfGuest]=useState([])
 
     //update event
     const[updatedWedding,setUpdatedWedding]=useState(wedding)
@@ -72,19 +75,62 @@ const Event= (props)=>{
     }
 
 //count guessts with isAttending as true
-// const handleCount= ()=>{
-    
-//     let counter=0
-//     for(let i=0; i<listOfGuesst.length; i++){
-//         if(listOfGuesst[i].isAttending===true) {
-//             counter=counter+1
-//             setCount(counter)
-//             setIsAttending(true)
-//         }
-//     }
 
-// }
+//manage count state
+const[count, setCount]=useState(0)
+
+//helper function. Takes the array of guests that belong to an event
+//and counts how many objects have isattending as true. 
+const handleCount= (list)=>{
     
+    let counter=0
+     for(let i=0; i<list.length; i++){
+         
+         if(list[i].isattending===true) {
+             counter=counter+1
+                 
+        }    
+    }
+    
+    setCount(counter)
+ }
+ //request all guest that belong to event
+
+const getGuests=async()=>{
+    try {
+      const response = await fetch(`http://localhost:3001/guestlist/${eventId}`)
+      const jsonData= await response.json()
+      const arrayGuest=await jsonData.data
+      handleCount(arrayGuest)
+      setListOfGuest(arrayGuest)
+      console.log('this is count after function',count)
+
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+//execute getGuest when the Event component mounts
+useEffect(()=>{
+    getGuests()
+  },[]) 
+  
+//Upload image 
+
+const uploadImage=async(e)=>{
+e.preventDefault()
+try {
+ //get secure url from server
+ 
+ //post image to s3 bucket
+ 
+}
+ catch (error){
+   console.log(error) 
+}
+}
+
 return(
     <div>
         
@@ -93,8 +139,14 @@ return(
             <h4>Location: {location}</h4>
             <h4>Date{date}</h4>
             <h5>{count} people are attending your event</h5>
+            
+        <form>
+            <input type="file" accept='image/*' />
+            <button type='submit'>Upload</button>
+        </form>
+
             <button onClick={handleOpenGuessList}>Manage your guesslist</button>
-            {isGuesslistOpen && <Guesslist eventId={eventId} groom={groom} bride={bride}/> }
+            {isGuesslistOpen && <Guesslist eventId={eventId} groom={groom} bride={bride} listOfGuest={listOfGuest}/> }
     
             <button onClick={handleOpenUpdate}>Edit event</button>
             {

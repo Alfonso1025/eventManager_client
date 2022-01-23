@@ -51,7 +51,7 @@ function Login(props){
                  value={userPassword}
                  onChange={e=>setUserPassword(e.target.value)}
                  />
-                <button>login</button>
+                <button>Sign in</button>
             </form>
            
         </div>
