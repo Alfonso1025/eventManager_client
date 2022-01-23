@@ -55,12 +55,12 @@ const [count, setCount]=useState(0);
     <>
     
     <Router>
-    {/* <div style={{width:100+"vw", height:80, background:"lightblue"}}>
+     <div style={{width:100+"vw", height:80, background:"lightblue"}}>
       <Link to="/login">Login</Link>
       
       <Link to="/EventManager">EventManager</Link>
      
-    </div> */}
+    </div> 
   
     <Routes>
       
