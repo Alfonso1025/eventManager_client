@@ -1,0 +1,56 @@
+body{
+    
+    font-family: 'Open Sans Condensed', sans-serif;
+    padding-bottom: 3rem;
+}
+.main-wrapper{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 5rem;
+  
+}
+.section1{
+    margin-bottom: 3rem;
+    
+}
+.section2{
+    margin-bottom: 3rem;
+}
+.section3{
+    display:flex;
+    margin-bottom: 5rem;
+}
+.section3 h4{
+    margin-bottom:1rem ;
+}
+.section3 h5{
+    margin-bottom: 1rem;
+}
+.section3-image{
+    background-image:url('./media/welcolmeImage.jpg') ;
+    background-size: cover;
+    width: 50rem;
+    height: 20rem;
+    border-radius: 15px 15px 0 0;
+    margin-left: 5rem;
+    margin-bottom: 3rem;
+}
+.text{
+    text-align: justify;
+    word-spacing: 3px;
+}
+
+@media (max-width: 1000px){
+    .section3{
+        display:flex;
+        flex-direction: column;
+        margin-bottom: 3rem;
+    }
+    .section3-image{
+        max-width: 300px;
+        margin: 0;
+    }
+}

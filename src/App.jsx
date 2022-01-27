@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import {BrowserRouter as Router, Routes, Route, Link,} from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import './App.css';
 import Home from "./Pages/Home";
 import RegisterUser from './Pages/RegisterUser';
@@ -7,6 +7,7 @@ import Login from "./Pages/Login";
 import EventManager from "./Pages/EventManager";
 import Registration from "./Pages/Registration";
 import CheckIn from './Pages/CheckIn';
+import Welcolme from './Pages/Welcolme';
 import Notfound from "./Pages/Notfound";
 
 
@@ -46,21 +47,17 @@ const [eventInfo, setEventInfo]=useState(defaultValue);
 //manage state for count of guests attending
 const [count, setCount]=useState(0);
 
+//styles for navigation bar. The navigation bar is not displayed in the 
+//checin component
 
-
-
+console.log(window.location.href)
 
 
   return (
     <>
     
     <Router>
-     <div style={{width:100+"vw", height:80, background:"lightblue"}}>
-      <Link to="/login">Login</Link>
-      
-      <Link to="/EventManager">EventManager</Link>
      
-    </div> 
   
     <Routes>
       
@@ -105,6 +102,7 @@ const [count, setCount]=useState(0);
       </Route>
       <Route path="/registration" exact element ={<Registration setEventInfo={setEventInfo}/>}></Route>
       <Route path="/checkin" exact element={<CheckIn count={count} setCount={setCount}/>}></Route>
+      <Route path="/" exact element={<Welcolme/>}></Route>
       <Route path="*" exact element={Notfound}></Route>
     </Routes>
   </Router>
