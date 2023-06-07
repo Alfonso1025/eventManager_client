@@ -12,14 +12,12 @@ import Notfound from "./Pages/Notfound";
 
 
 
+
 function App() {
 
 //manage authentication state
-const[isAuthenticated, setIsAuthenticated]=useState(false)
-const setAuth=(boolean)=>{
-  setIsAuthenticated(boolean);
-  
-}
+const[isAuthenticated, setIsAuthenticated]= useState(false)
+
 //validate authentication state 
 const checkIsAuthenticated=async()=>{
 try {
@@ -47,15 +45,12 @@ const [eventInfo, setEventInfo]=useState(defaultValue);
 //manage state for count of guests attending
 const [count, setCount]=useState(0);
 
-//styles for navigation bar. The navigation bar is not displayed in the 
-//checin component
 
-console.log(window.location.href)
 
 
   return (
     <>
-    
+   
     <Router>
      
   
@@ -63,7 +58,8 @@ console.log(window.location.href)
       
       <Route path="/login" exact  element={
         <>
-        { !isAuthenticated ? <Login setAuth={setAuth}/> : <Home setAuth={setAuth}/>   }
+        { !isAuthenticated ? <Login setAuth={setIsAuthenticated}/> :
+                             <Home setAuth={setIsAuthenticated}/>  }
      
         </>
       }>
@@ -72,7 +68,8 @@ console.log(window.location.href)
       <Route path="/registeruser" exact  element={
 
         <>
-          {!isAuthenticated ? <RegisterUser setAuth={setAuth}/>  : <Login/>}
+          {!isAuthenticated ? <RegisterUser setAuth={setIsAuthenticated}/> 
+                             : <Login setAuth={setIsAuthenticated}/>}
 
         </>
       }>
@@ -82,9 +79,9 @@ console.log(window.location.href)
       <Route path="/EventManager" exact element={
         <>
         { isAuthenticated ? 
-             <EventManager setAuth={setAuth}  setListOfGuesst={setListOfGuesst} listOfGuesst={listOfGuesst} count={count} eventInfo={eventInfo}/>
+             <EventManager setAuth={setIsAuthenticated}  setListOfGuesst={setListOfGuesst} listOfGuesst={listOfGuesst} count={count} eventInfo={eventInfo}/>
           :
-          <Login  setAuth={setAuth}/>
+          <Login  setAuth={setIsAuthenticated}/>
           
       }
         </>
@@ -93,7 +90,7 @@ console.log(window.location.href)
 
       <Route path="/home" exact element={
          <>
-         { !isAuthenticated ? <Login setAuth={setAuth}/> : <Home setAuth={setAuth}/>   }
+         { !isAuthenticated ? <Login setAuth={setIsAuthenticated}/> : <Home setAuth={setIsAuthenticated}/>   }
       
          </>
 

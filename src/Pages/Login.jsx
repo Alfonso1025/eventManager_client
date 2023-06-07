@@ -1,7 +1,11 @@
 import React, {useState} from "react"
+import Navbar from "./Navbar"
+import '../styles/checkin.css'
+import { useNavigate } from 'react-router-dom'
 
 
 function Login(props){
+    const navigate = useNavigate()
     //props
     const setAuth=props.setAuth
     //manage state for login form
@@ -18,15 +22,18 @@ function Login(props){
                body:JSON.stringify(body)
 
             })
-            
-            //convert the response to json format
             const parseResponse= await response.json()
+            console.log(parseResponse)
+            if(parseResponse.code === 200){
+                console.log('logged in')
+                localStorage.setItem("token", parseResponse.data)
+                setAuth(true)
+                navigate('/home')
+            }
             
-            //the response is a jwt token whis is stored in the local storage
-            localStorage.setItem("token", parseResponse.data)
             
-            //since a token was provided the user is authorized
-            setAuth(true)
+           
+           
         }
         catch(err){
             console.log(err.message)
@@ -36,13 +43,15 @@ function Login(props){
 
     
     return(
-
-        <div>
-            <form onSubmit={submitLoginForm}>
+        <>
+        <Navbar/>
+        <div className="login-container">
+            <form onSubmit={submitLoginForm}  className="form-login">
                 <input type="email"
                   placeholder="Email"
                   value={userEmail}
                   onChange={e=>setUserEmail(e.target.value)}
+                  className="input-login"
                   />
                   
                 <input 
@@ -50,11 +59,14 @@ function Login(props){
                  placeholder="password"
                  value={userPassword}
                  onChange={e=>setUserPassword(e.target.value)}
+                 className="input-login"
                  />
-                <button>Sign in</button>
+                <button className="button-login">Sign in</button>
             </form>
            
         </div>
+
+        </>
     )
 }
 export default Login

@@ -5,7 +5,6 @@ const Welcolme = ()=>{
     
     return(
 <>
-
 <Navbar/>
 <div className="main-wrapper">
 <div className='section1'>

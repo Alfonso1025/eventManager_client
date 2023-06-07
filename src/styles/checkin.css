@@ -2,7 +2,7 @@ body{
     box-sizing: border-box;
     background-color: rgb(255,255,255);
     padding: 0;
-}
+} 
 .header-login{
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@ body{
 .form-login{
     display: flex;
     flex-direction: column;
-    width: 70vw;
+    width: 40vw;
     
 
     
@@ -37,7 +37,8 @@ body{
     padding: 15px .625rem 0;
     border: 1px solid #680202;
     border-radius: 5px;
-
+    margin-top: 25px;
+   
 }
 .button-login{
     margin-top: 50px;
@@ -45,7 +46,7 @@ body{
     background-color: #680202;
     height: 4rem;
     color: rgb(255,255,255);
-    border-radius: 5px;
+    border-radius: 12px;
 }
 
 .header-manage-checkin{
