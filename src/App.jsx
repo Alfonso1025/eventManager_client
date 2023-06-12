@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import RegisterUser from './Pages/RegisterUser';
 import Login from "./Pages/Login";
 import EventManager from "./Pages/EventManager";
-import Registration from "./Pages/Registration";
+import Registration from './Pages/Registration'
 import CheckIn from './Pages/CheckIn';
 import Welcolme from './Pages/Welcolme';
 import Notfound from "./Pages/Notfound";

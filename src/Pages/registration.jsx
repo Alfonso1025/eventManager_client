@@ -61,4 +61,6 @@ function Registration(props){
         </>
     )
 }
+
+
 export default Registration
