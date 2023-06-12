@@ -3,7 +3,8 @@ import Navbar from './Navbar'
 import '../styles/checkin.css'
 
 const RegisterUser= (props)=>{
-
+    
+    const remote_server = process.env.REACT_APP_REMOTE_SERVER
     //recibe props
     const setAuth=props.setAuth
 
@@ -17,7 +18,7 @@ const RegisterUser= (props)=>{
         e.preventDefault()
         try {
             const body= {userName, userEmail, userPassword}
-            const response= await fetch('http://localhost:3001/users/registeruser',
+            const response= await fetch(`${remote_server}/users/registeruser`,
             {
                 method:'POST',
                 headers:{"Content-Type":"application/json"},

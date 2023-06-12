@@ -1,0 +1,179 @@
+/* Guest container */
+.guest-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+   
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Form container */
+  .guest-container .form-container {
+    
+    margin-right: 20px;
+    
+  }
+  
+  /* Form header */
+  .guest-container .form-container h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #680202;
+  }
+  
+  /* Form label */
+  .guest-container .form-container label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  /* Form input */
+  .guest-container .form-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #680202;
+    border-radius: 4px;
+  }
+  
+  /* Form button */
+  .guest-container .form-container button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #680202;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Guest list container */
+  .guest-container .guest-list-container {
+    width: 40vw;
+  }
+  
+  /* Guest list */
+  .guest-container .guest-list-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Guest list item */
+  .guest-container .guest-list-container li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #680202;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  
+  /* Guest attending label */
+  .guest-container .guest-list-container p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #680202;
+    margin-right: 8px;
+  }
+  
+  /* Guest list buttons */
+  .guest-container .guest-list-container li button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #680202;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Guest list buttons hover effect */
+  .guest-container .guest-list-container li button:hover {
+    background-color: rgb(255, 255, 255);
+    color: #680202;
+    border: 1px solid #680202;
+  }
+
+
+
+
+  /* update guest form styles */
+
+ /* Update guest container */
+.update-guest-container {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Update guest title */
+  .update-guest-container h1 {
+    font-size: 24px;
+    color: #680202;
+    margin-bottom: 16px;
+  }
+  
+  /* Update guest form */
+  .update-guest-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Update guest label */
+  .update-guest-container form label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #680202;
+    margin-bottom: 8px;
+  }
+  
+  /* Update guest input */
+  .update-guest-container form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #680202;
+    border-radius: 4px;
+  }
+  
+  /* Update guest button container */
+  .update-guest-container form .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  /* Update guest button */
+  .update-guest-container form button {
+    flex: 1;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #680202;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Update guest button hover effect */
+  .update-guest-container form button:hover {
+    background-color: #996515;
+  }
+  
+  
+  

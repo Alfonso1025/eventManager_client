@@ -1,9 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Guesslist from "./Guesslist"
+import { EventContext } from '../Context/EventContext'
+import { useNavigate } from 'react-router-dom'
+import '../styles/Event.css'
 
 const Event= (props)=>{
+
+    const remote_server = process.env.REACT_APP_REMOTE_SERVER
+    const navigate = useNavigate()
     //recibe props
-    const wedding=props.weddingName
+    const wedding=props.wedding
     const groom=props.groom
     const bride=props.bride
     const location=props.location
@@ -20,12 +26,16 @@ const Event= (props)=>{
     const[updatedBride,setUpdatedBride]=useState(bride)
     const[updatedLocation,setUpdatedLocation]=useState(location)
     const[updatedDate,setUpdatedDate]=useState(date)
+   
+    
+
+   //function definitions
 
     const updateEvent=async(e)=>{
         e.preventDefault()
         try {
             const body={updatedWedding,updatedGroom,updatedBride,updatedLocation,updatedDate}
-            const response=await fetch(`http://localhost:3001/event/update/${eventId}`,{
+            const response=await fetch(`${remote_server}/event/update/${eventId}`,{
                 method:"PUT",
             headers:{
                 token:localStorage.token,
@@ -53,7 +63,7 @@ const Event= (props)=>{
     const deleteEvent=async(e)=>{
         e.preventDefault()
         try {
-        const deletedEvent=await fetch(`http://localhost:3001/event/delete/${eventId}`,
+        const deletedEvent=await fetch(`${remote_server}/event/delete/${eventId}`,
         { 
             method:"DELETE",
             headers:{token:localStorage.token}
@@ -66,89 +76,38 @@ const Event= (props)=>{
         }
     }
 
+//open guestlist
 
-    //open component guesslist
-    const[isGuesslistOpen, setisGueslistOpen]=useState(false)
     function handleOpenGuessList(e){
+         console.log('from event eventid: ', eventId)
         e.preventDefault();
-        setisGueslistOpen(!isGuesslistOpen)
+        localStorage.setItem('locStorGroom', groom);
+        localStorage.setItem('locStorBride', bride);
+        localStorage.setItem('locStorEventId', eventId);
+        navigate('/guestlist')
+
+       
     }
 
-//count guessts with isAttending as true
-
-//manage count state
-const[count, setCount]=useState(0)
-
-//helper function. Takes the array of guests that belong to an event
-//and counts how many objects have isattending as true. 
-const handleCount= (list)=>{
-    
-    let counter=0
-     for(let i=0; i<list.length; i++){
-         
-         if(list[i].isattending===true) {
-             counter=counter+1
-                 
-        }    
-    }
-    
-    setCount(counter)
- }
- //request all guest that belong to event
-
-const getGuests=async()=>{
-    try {
-      const response = await fetch(`http://localhost:3001/guestlist/${eventId}`)
-      const jsonData= await response.json()
-      const arrayGuest=await jsonData.data
-      handleCount(arrayGuest)
-      setListOfGuest(arrayGuest)
-      console.log('this is count after function',count)
-
-    } 
-    catch (error) {
-        console.log(error)
-    }
-}
-
-//execute getGuest when the Event component mounts
-useEffect(()=>{
-    getGuests()
-  },[]) 
-  
-//Upload image 
-
-const uploadImage=async(e)=>{
-e.preventDefault()
-try {
- //get secure url from server
- 
- //post image to s3 bucket
- 
-}
- catch (error){
-   console.log(error) 
-}
-}
 
 return(
-    <div>
+    <div className='event-container'>
         
-        <h1>{wedding}!</h1>
-        <h3>Congratulations</h3> <p>{bride} and {groom}</p>
+        
+        <h3>Congratulations!</h3> <p>{bride} and {groom}</p>
             <h4>Location: {location}</h4>
             <h4>Date{date}</h4>
-            <h5>{count} people are attending your event</h5>
+           
+        
+        <div className='buttons-flex-container'>
             
-        <form>
-            <input type="file" accept='image/*' />
-            <button type='submit'>Upload</button>
-        </form>
-
-            <button onClick={handleOpenGuessList}>Manage your guesslist</button>
-            {isGuesslistOpen && <Guesslist eventId={eventId} groom={groom} bride={bride} listOfGuest={listOfGuest}/> }
-    
-            <button onClick={handleOpenUpdate}>Edit event</button>
+            <button onClick={handleOpenGuessList} className='manage-guestlist-button'>
+                Manage your guesslist
+            </button>
+           
+            <button onClick={handleOpenUpdate} className='edit-event-button'>
+                Edit event
+            </button>
             {
                 isUpdateOpen && 
                 <form onSubmit={updateEvent}>
@@ -168,7 +127,9 @@ return(
                 </form>
             }
 
-            <button onClick={deleteEvent}>Delete</button>
+            <button onClick={deleteEvent} className='delete-event-button'>Delete</button>
+        </div>
+           
     </div>
 
 

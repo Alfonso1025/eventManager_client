@@ -1,10 +1,10 @@
 import  React, {useState} from "react"
-
-
+import Navbar from "./Navbar";
+import '../styles/Registration.css'
 
 function Registration(props){
 
-    
+    const remote_server = process.env.REACT_APP_REMOTE_SERVER
     
     const [weddingName, setWeddingName]=useState('');
     const [groom, setGroom]=useState('');
@@ -19,7 +19,7 @@ function Registration(props){
     console.log(body)
 
      try {
-        const response= await fetch('http://localhost:3001/event/create',{
+        const response= await fetch(`${remote_server}/event/create`,{
             method:"POST",
             headers:{
                 token:localStorage.token,
@@ -38,8 +38,9 @@ function Registration(props){
 
 
     return(
-
-        <div>
+        <>
+        <Navbar/>
+        <div className="form-container">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="">Name the event</label>
                     <input type="text" onChange={(e)=>setWeddingName(e.target.value)} value={weddingName} placeholder="Joe and Jane Wedding" />
@@ -57,6 +58,7 @@ function Registration(props){
             </form>
            
         </div>
+        </>
     )
 }
 export default Registration

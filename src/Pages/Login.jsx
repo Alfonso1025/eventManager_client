@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 
 function Login(props){
+
+    const remote_server = process.env.REACT_APP_REMOTE_SERVER
     const navigate = useNavigate()
     //props
     const setAuth=props.setAuth
@@ -16,7 +18,7 @@ function Login(props){
         e.preventDefault()
         const body={userEmail,userPassword}
         try{
-            const response=await fetch('http://localhost:3001/users/login',{
+            const response=await fetch(`${remote_server}/users/login`,{
                method:"POST",
                headers:{"Content-Type":"application/json"},
                body:JSON.stringify(body)

@@ -4,7 +4,7 @@ import Navcheckin from '../utilities/Navcheckin'
 
 const ManageCheckIn= (props)=>{
 
-
+const remote_server = process.env.REACT_APP_REMOTE_SERVER
 //recibe props
      const listOfGuesst= props.listOfGuesst
      const setCount= props.setCount
@@ -26,7 +26,7 @@ const updateIsAttending=async(e)=>{
     e.preventDefault()
     const body={isAttending:newIsAttending}
     try {
-        const response= await fetch(`http://localhost:3001/checkin/isattending/${guestId}`,{
+        const response= await fetch(`${remote_server}/checkin/isattending/${guestId}`,{
             method:'PUT',
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(body)

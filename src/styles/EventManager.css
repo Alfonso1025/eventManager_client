@@ -1,0 +1,27 @@
+/* No events container */
+.no-events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+  }
+  
+  /* No events message */
+  .no-events-container p {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Button */
+  .no-events-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #680202;
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+  }
+  

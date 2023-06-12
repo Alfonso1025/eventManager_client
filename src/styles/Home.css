@@ -1,0 +1,64 @@
+/* Component container */
+.component-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+   background-color: rgb(255, 255, 255);
+   
+   height: 50vh;
+    
+  }
+  
+  /* Welcome message */
+  .component-container p {
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+  
+  /* Buttons container */
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  /* Common button styles */
+  .component-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Logout button */
+  .component-container .logout-button {
+    background-color: #680202;
+    color: rgb(255, 255, 255);
+  }
+  
+  /* Create event button */
+  .component-container .create-event-button {
+    background-color: rgb(255, 255, 255);
+    color: #680202;
+    border: 1px solid #680202;
+  }
+  
+  /* My events button */
+  .component-container .my-events-button {
+    background-color: rgb(255, 255, 255);
+    color: #680202;
+    border: 1px solid #680202;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    /* Adjust button container for smaller screens */
+    .button-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  

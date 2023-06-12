@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from "react"
+import Navbar from "./Navbar"
+import '../styles/Home.css'
 
 
 
 function Home(props){
+
+     const remote_server = process.env.REACT_APP_REMOTE_SERVER
     //recibe props
     const setAuth= props.setAuth
     //manage state for user
@@ -12,7 +16,7 @@ function Home(props){
     
     const getUserFromDb=async()=>{
         try{
-            const response= await fetch('http://localhost:3001/dashboard',{
+            const response= await fetch(`${remote_server}/dashboard`,{
             method:'GET',
             headers:{token:localStorage.token}
        })
@@ -33,36 +37,49 @@ function Home(props){
 
 
     return(
-        <div>This is the Home Page
-            <p>Welcome {user}</p>
-            
-            <button 
-            onClick={(e)=>{
-                e.preventDefault()
-                localStorage.removeItem("token")
-                setAuth(false)
-            } }
-            >logout
-            </button>
 
-            <button
-                type="button"
-                onClick={(e) => {
-                e.preventDefault();
-                window.location.href='Registration';
-                    }}> 
-               create event
-            </button>
-            <button
-                type="button"
-                onClick={(e) => {
-                e.preventDefault();
-                window.location.href='EventManager';}
-                }> 
-                My events
-            </button>
-        
-        </div>
+<>
+<Navbar/>
+<div className="component-container">
+  <p>Welcome {user}</p>
+
+  <div className="button-container">
+   
+
+    <button
+      className="create-event-button"
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        window.location.href = "Registration";
+      }}
+    >
+      Create Event
+    </button>
+
+    <button
+      className="my-events-button"
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        window.location.href = "EventManager";
+      }}
+    >
+      My Events
+    </button>
+    <button
+      className="logout-button"
+      onClick={(e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        setAuth(false);
+      }}
+    >
+      Logout
+    </button>
+  </div>
+</div>
+</>
     )
 }
 export default Home
