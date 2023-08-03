@@ -39,6 +39,8 @@ body{
     border: 1px solid #680202;
     border-radius: 5px;
     margin-top: 25px;
+    font-size: large;
+    font-weight: bold;
    
 }
 .button-login{

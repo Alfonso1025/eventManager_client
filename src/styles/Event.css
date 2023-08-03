@@ -8,7 +8,7 @@
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: yellowgreen;
+    
   }
   
   /* Event title */
@@ -54,10 +54,10 @@
   .buttons-flex-container{
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
-      width: 80vw;
+      justify-content: space-between;
+      width: 60vw;
       margin-top: 2rem;
-      background-color: aqua;
+     
   }
   /* File upload button */
   .event-container button[type="submit"] {
@@ -104,4 +104,48 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+  .update-form{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: auto;
+    
+  }
+  .update-form label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .update-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #680202;
+    border-radius: 4px;
+  }
+  .update-form-buttons{
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: space-around;
+    align-self: center;
+  }
+  .update-form .button-cancel {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #680202;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .update-form .button-update {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #694f0c;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }

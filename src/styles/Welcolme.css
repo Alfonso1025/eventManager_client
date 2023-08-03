@@ -2,6 +2,7 @@ body{
     
     font-family: 'Open Sans Condensed', sans-serif;
     padding-bottom: 3rem;
+    background-color: rgb(251, 245, 245)
 }
 .main-wrapper{
     display:flex;
@@ -13,8 +14,18 @@ body{
   
 }
 .section1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: 35vw;
     margin-bottom: 3rem;
     
+}
+.logo-container{
+    height: 85px;
+    width: 85px;
+    border-radius: 40px;
 }
 .section2{
     margin-bottom: 3rem;

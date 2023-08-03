@@ -58,7 +58,7 @@ function Login(props){
                   
                 <input 
                 type="password" 
-                 placeholder="password"
+                 placeholder="Password"
                  value={userPassword}
                  onChange={e=>setUserPassword(e.target.value)}
                  className="input-login"

@@ -1,6 +1,7 @@
 import  React, {useState} from "react"
 import Navbar from "./Navbar";
 import '../styles/Registration.css'
+import Header from "../utilities/Header";
 
 function RegisterEvent(props){
 
@@ -40,6 +41,7 @@ function RegisterEvent(props){
     return(
         <>
         <Navbar/>
+        <Header/>
         <div className="form-container">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="">Name the event</label>

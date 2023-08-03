@@ -1,6 +1,7 @@
 import  React, {useState} from "react"
 import Navbar from "./Navbar";
 import '../styles/Registration.css'
+import Header from "../utilities/Header";
 
 function Registration(props){
 
@@ -40,7 +41,10 @@ function Registration(props){
     return(
         <>
         <Navbar/>
-        <div className="form-container">
+        
+        <Header/>
+        {/* <div className="form-container">
+        
             <form onSubmit={handleSubmit}>
                 <label htmlFor="">Name the event</label>
                     <input type="text" onChange={(e)=>setWeddingName(e.target.value)} value={weddingName} placeholder="Joe and Jane Wedding" />
@@ -57,7 +61,7 @@ function Registration(props){
                  <button>Get Started</button>
             </form>
            
-        </div>
+        </div> */}
         </>
     )
 }

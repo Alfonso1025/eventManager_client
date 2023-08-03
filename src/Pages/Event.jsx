@@ -3,6 +3,7 @@ import Guesslist from "./Guesslist"
 import { EventContext } from '../Context/EventContext'
 import { useNavigate } from 'react-router-dom'
 import '../styles/Event.css'
+import Header from '../utilities/Header'
 
 const Event= (props)=>{
 
@@ -93,42 +94,55 @@ const Event= (props)=>{
 return(
     <div className='event-container'>
         
-        
-        <h3>Congratulations!</h3> <p>{bride} and {groom}</p>
+        <Header/>
+        { !isUpdateOpen &&
+            <>
+           
+
+            <h3>Congratulations!</h3> <p>{bride} and {groom}</p>
             <h4>Location: {location}</h4>
             <h4>Date{date}</h4>
            
         
-        <div className='buttons-flex-container'>
+            <div className='buttons-flex-container'>
             
-            <button onClick={handleOpenGuessList} className='manage-guestlist-button'>
-                Manage your guesslist
-            </button>
+                <button onClick={handleOpenGuessList} className='manage-guestlist-button'>
+                    Manage your guesslist
+                </button>
            
-            <button onClick={handleOpenUpdate} className='edit-event-button'>
-                Edit event
-            </button>
-            {
-                isUpdateOpen && 
-                <form onSubmit={updateEvent}>
-                    <label htmlFor="">Name the event</label>
-                    <input type="text" onChange={(e)=>setUpdatedWedding(e.target.value)} value={updatedWedding} />
-                <label htmlFor="">Groom</label>
-                    <input type="text" onChange={(e)=>setUpdatedGroom(e.target.value)} value={updatedGroom} />
-                <label htmlFor="">Bride</label>
-                    <input type="text" onChange={(e)=>setUpdatedBride(e.target.value)}value={updatedBride} />
-                <label htmlFor="">Location</label>
-                    <input type="text" onChange={(e)=>setUpdatedLocation(e.target.value)}value={updatedLocation} />
-                <label htmlFor="">Date</label>
-                    <input type="date" onChange={(e)=>setUpdatedDate(e.target.value)} value={updatedDate} />
+                <button onClick={handleOpenUpdate} className='edit-event-button'>
+                    Edit event
+                </button>
+            
 
-                <button >Edit</button>
+                <button onClick={deleteEvent} className='delete-event-button'>Delete</button>
+            </div>
+        </>
+        }
+        
+
+        {
+                isUpdateOpen && 
+
+                <form onSubmit={updateEvent} className='update-form'>
+                    <label htmlFor="">Name the event</label>
+                        <input type="text" onChange={(e)=>setUpdatedWedding(e.target.value)} value={updatedWedding} />
+                    <label htmlFor="">Groom</label>
+                    <input type="text" onChange={(e)=>setUpdatedGroom(e.target.value)} value={updatedGroom} />
+                    <label htmlFor="">Bride</label>
+                        <input type="text" onChange={(e)=>setUpdatedBride(e.target.value)}value={updatedBride} />
+                    <label htmlFor="">Location</label>
+                        <input type="text" onChange={(e)=>setUpdatedLocation(e.target.value)}value={updatedLocation} />
+                    <label htmlFor="">Date</label>
+                    <input type="date" onChange={(e)=>setUpdatedDate(e.target.value)} value={updatedDate} />
+                    <div className='update-form-buttons'>
+                        <button  className='button-cancel'  onClick={handleOpenUpdate}>Cancel</button>
+                        <button className='button-update'>Edit</button>
+                    </div>
+                    
 
                 </form>
             }
-
-            <button onClick={deleteEvent} className='delete-event-button'>Delete</button>
-        </div>
            
     </div>
 

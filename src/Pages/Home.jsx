@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import Navbar from "./Navbar"
 import '../styles/Home.css'
+import Header from "../utilities/Header"
 
 
 
@@ -41,6 +42,8 @@ function Home(props){
 <>
 <Navbar/>
 <div className="component-container">
+  
+  <Header/>
   <p>Welcome {user}</p>
 
   <div className="button-container">

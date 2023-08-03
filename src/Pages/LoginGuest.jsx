@@ -6,7 +6,7 @@ import  {Button, Form}  from 'react-bootstrap';
 
 const LoginGuest= (props)=>{
 
-
+const remote_server = process.env.REACT_APP_REMOTE_SERVER
 //recibe props
     const setIsGuestVerified= props.setIsGuestVerified;
     const setGuest=props.setGuest;
@@ -21,7 +21,7 @@ const LoginGuest= (props)=>{
         e.preventDefault()
         try {
 
-            const response= await fetch(`http://localhost:3001/checkin/${code}`,{
+            const response= await fetch(`${remote_server}/checkin/${code}`,{
                 method:'GET'
             })
             const guest=await response.json()
