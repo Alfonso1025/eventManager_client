@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { useEffect } from 'react';
 import Navcheckin from '../utilities/Navcheckin'
+import '../styles/checkin.css'
+import Header from '../utilities/Header';
 
 const ManageCheckIn= (props)=>{
 
@@ -53,7 +55,7 @@ const[descr,setDescr]=useState('')
 const weddingId=guest[0].wedding_id
 const getEvent=async()=>{
     try {
-       const response=await fetch(`http://localhost:3001/checkin/getevent/${weddingId}`) 
+       const response=await fetch(`${remote_server}/checkin/getevent/${weddingId}`) 
        const event=await response.json()
        console.log(event)
        setGroom(event[0].groom_name)
@@ -82,7 +84,7 @@ const Rsvp=(props)=>{
             <div>
                   {!showConfirm ?
 
-                  <form onSubmit={updateIsAttending}>
+                  <form className='form-attendance' onSubmit={updateIsAttending}>
                     <p>{guest[0].guest_name}</p>
                     <label htmlFor="">I am attending</label>
                     <input type="checkbox" value={newIsAttending} onChange={(e)=>setNewIsAttending(true)}/>
@@ -90,8 +92,11 @@ const Rsvp=(props)=>{
                    </form>
                    
                    :
-
-                   <h1>Attendace confirmed</h1>
+                <div className='attendace-wrapper'>
+                    <h1>Attendace confirmed</h1>
+                   <h3>We cant wait to see you</h3>
+                </div>
+                   
                    }
             </div>
       
@@ -121,7 +126,7 @@ const Questions=()=>{
 //travel
 const Travel=()=>{
     return(
-        <h1>travel comming soon</h1>
+        <h1>Travel comming soon</h1>
     )
 }
 //registry
@@ -130,6 +135,7 @@ const Registry=()=>{
         <h1>Registry comming soon</h1>
     )
 }
+
 //party
 const Party=()=>{
     return(
@@ -150,16 +156,16 @@ console.log('Rsvp is:',showRsvp)
 
     return(
 
-        <div>
-            <header >
-                <div className='header-manage-checkin'>
-                <h1>{bride} & {groom}</h1>
-                 <h3>{date}.{location}</h3>
-                <p>{guest[0].guest_name} share this special moment with us</p> 
-                </div>
-                
-            </header>
+        <div className='manage-checkin-wrapper'>
             
+            <div className='header-manage-checkin'>
+                <h1>{bride} & {groom}</h1>
+                 <h3>{date}   {location}</h3> 
+                <p>{guest[0].guest_name} share this special moment with us</p> 
+            </div>
+                
+            
+            <Header></Header>
             <Navcheckin
              groom={groom}
               bride={bride}
@@ -167,13 +173,20 @@ console.log('Rsvp is:',showRsvp)
                setShowDetails={setShowDetails}
                setShowRegistry={setShowRegistry}
                setShowHome={setShowHome}
+               setShowQuestions = {setShowQuestions}
+               setShowTravel = {setShowTravel}
+               setShowParty = {setShowParty}
                />
-
-           { showRsvp && <Rsvp/>}
+        <div className='main-container-manage-checkin'>
+            { showRsvp && <Rsvp/>}
            { showHome && <Home/>}
            {showRegistry && <Registry/>}
            {showDetails && <Details/>}
            {showQuestions&&<Questions/>}
+           {showTravel&& <Travel/>}
+           {showParty&& <Party/>}
+        </div>
+          
            
             
         </div>

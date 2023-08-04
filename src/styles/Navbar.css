@@ -5,8 +5,8 @@
     width:100vw;
     height:20vh;
     padding-top: 1.5rem;
-    background-color:#680202;
-    opacity: 0.7;
+    background-color: rgba(104, 2, 2, 0.5);
+   /*  opacity: 0.7; */
 }
 .main-navbar{
     

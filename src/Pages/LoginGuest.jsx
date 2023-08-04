@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import '../styles/checkin.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import  {Button, Form}  from 'react-bootstrap';
+import Header from '../utilities/Header';
+import Navbar from './Navbar';
 
 
 const LoginGuest= (props)=>{
@@ -40,10 +42,12 @@ const remote_server = process.env.REACT_APP_REMOTE_SERVER
     return(
 
     <>
-    <div className='header-login'><h1>RSVP</h1></div>
+    <Navbar/>
     
     <div className='login-container'>
-        
+       
+        <h1>RSVP</h1>
+       
          <form className='form-login'>
           <input className='input-login' placeholder='YOUR GUEST CODE' type="text" value={code} onChange={(e)=>{setCode(e.target.value)}}/>
           <button className='button-login'  onClick={handleAuthentication} >FIND MY INVITATION</button>

@@ -14,19 +14,33 @@ const NavCheckin=(props)=>{
     const setShowTravel=props.setShowTravel
     const setShowParty=props.setShowParty
     
+    const handleShowComponent = (componentName) => {
+        setShowHome(false);
+        setShowRsvp(false);
+        setShowRegistry(false);
+        setShowDetails(false);
+        setShowQuestions(false);
     
+        if (componentName === 'home') setShowHome(true);
+        else if (componentName === 'rsvp') setShowRsvp(true);
+        else if (componentName === 'registry') setShowRegistry(true);
+        else if (componentName === 'details') setShowDetails(true);
+        else if (componentName === 'questions') setShowQuestions(true);
+        else if (componentName === 'travel') setShowTravel(true);
+        else if (componentName === 'party') setShowParty(true);
+      };
     return(
         <nav className="navbar">
             
             <ul 
             className= "nav-links">
-               <li onClick={()=>setShowHome(true)}>Home</li> 
-               <li onClick={()=>setShowDetails(true)}>Deatils</li>
-               <li onClick={()=>setShowRegistry(true)}>Registry</li>
-               <li onClick={()=>setShowRsvp(true)}>RSVP</li>
-               <li onClick={()=>setShowQuestions(true)}>Q+A</li>
-               <li onClick={()=>setShowTravel(true)}>Travel</li>
-               <li onClick={()=>setShowParty(true)}>Party</li>
+               <li onClick={() => handleShowComponent('home')}>Home</li> 
+               <li onClick={() => handleShowComponent('details')}>Deatils</li>
+               <li onClick={() => handleShowComponent('registry')}>Registry</li>
+               <li onClick={() => handleShowComponent('rsvp')}>RSVP</li>
+               <li onClick={() => handleShowComponent('questions')}>Q+A</li>
+               <li onClick={() => handleShowComponent('travel')}>Travel</li>
+               <li onClick={() => handleShowComponent('party')}>Party</li>
                
             </ul>
             
