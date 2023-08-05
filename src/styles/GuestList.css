@@ -187,10 +187,10 @@
       width: 100vw;
       overflow-x: hidden;
    
-      background-color: green;
+      
     }
     .guest-list-container{
-      background-color: red;
+      
       width: 100vw;
       display: flex;
       align-items: center;
