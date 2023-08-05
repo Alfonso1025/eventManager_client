@@ -148,16 +148,16 @@ useEffect(()=>{
     <>
     <Navbar/>
       <div className="guest-container">
-      <div className="form-container">
-        <h2>Add a New Guest</h2>
-        <form onSubmit={addGuest}>
-          <label htmlFor="first-name">First Name</label>
-          <input
+        <div className="form-container">
+          <h2>Add a New Guest</h2>
+          <form onSubmit={addGuest}>
+            <label htmlFor="first-name">First Name</label>
+            <input
             type="text"
             id="first-name"
             onChange={(e) => setGuestName(e.target.value)}
             value={guestName}
-          />
+            />
     
           <label htmlFor="last-name">Last Name</label>
           <input
@@ -176,7 +176,7 @@ useEffect(()=>{
           />
     
           <button type="submit">Add</button>
-        </form>
+          </form>
       </div>
      {
       isUpdateOpen && !hasUpdateFailed &&
@@ -209,16 +209,22 @@ useEffect(()=>{
           
           <ul>
             {listOfGuest.map((element) => (
-              <li key={element.guestlist_id}>
-                {element.isattending === true && <p>Attending</p>}
-                <p>{element.guest_name}</p>
-                <p> {element.code}</p>
+              
+               <li key={element.guestlist_id}>
                
+                  {element.isattending === true && <p>Attending</p>}
+                  <p>{element.guest_name}</p>
+                  <p> {element.code}</p>
+                
+                
                
-                <button onClick={() => deleteGuesst(element.guestlist_id)}>Eliminate</button>
-                <button onClick={()=>openUpdate(element.guestlist_id)}>Edit Guest</button>
-              </li>
-            ))}
+             
+                  <button onClick={() => deleteGuesst(element.guestlist_id)}>Eliminate</button>
+                  <button onClick={()=>openUpdate(element.guestlist_id)}>Edit</button>
+              
+                
+              </li> 
+            ))} 
           </ul>
         )}
       </div>

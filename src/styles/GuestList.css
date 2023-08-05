@@ -10,6 +10,7 @@
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    overflow-x: hidden;
   }
   
   /* Form container */
@@ -55,6 +56,8 @@
     border-radius: 4px;
     cursor: pointer;
   }
+
+
   
   /* Guest list container */
   .guest-container .guest-list-container {
@@ -175,5 +178,36 @@
     background-color: #996515;
   }
   
+  @media screen and (max-width: 600px) {
+    .guest-container{
+      flex-direction: column;
+    
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      overflow-x: hidden;
+   
+      background-color: green;
+    }
+    .guest-list-container{
+      background-color: red;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .guest-container .guest-list-container ul{
+     
+      width: 100vw;
+      
+    }
+    .guest-container .guest-list-container li {
+      display: flex;
+      flex-direction: row;
+      width: 90vw;
+  
+    }
+   
+}
   
   
