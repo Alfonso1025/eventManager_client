@@ -11,7 +11,7 @@ const Welcolme = ()=>{
 <div className='section1'>
     
     <div className='logo-container'>
-            <img src={Logo} alt="" className='logo-container'/> 
+            <img src={Logo} alt="" className='logo'/> 
      </div>
     <div>  
         <h1>Dear user</h1>
@@ -31,7 +31,7 @@ const Welcolme = ()=>{
 <div className='section3'>
     <div className='section3-text'>
     
-    <h5>To my dear users:</h5>
+
     <h6 className='text'> 
         JoyHub was designed for those who, like me, prefer rather simple
         interfaces that are eassy to use. It does not have advetising left and right
